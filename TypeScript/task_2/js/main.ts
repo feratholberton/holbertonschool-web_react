@@ -47,6 +47,18 @@ const createEmployee = (salary: SalaryUnit): Director | Teacher => {
   return new Director();
 };
 
+const isDirector = (employee: Director | Teacher): employee is Director => employee instanceof Director;
+
+const executeWork = (employee: Director | Teacher): string => {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  }
+  return employee.workTeacherTasks();
+};
+
 console.log(createEmployee(200));
 console.log(createEmployee(1000));
 console.log(createEmployee('$500'));
+
+console.log(executeWork(createEmployee(200)));
+console.log(executeWork(createEmployee(1000)));
